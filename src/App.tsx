@@ -1,17 +1,17 @@
-
-
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import NewTask from "./Components/NewTask";
-import TodoList from "./Components/TodoList";
-import { Todo } from "./Components/Todo";
+// import NewTask from "./Components/NewTask";
+// import TodoList from "./Components/TodoList";
+// import { Todo } from "./Components/Todo";
 import Header from "./Components/Header";
-import Login from "./Components/Login";
+import LandingPage from "./Components/LandingPage";
+import MainContainer from "./Components/MainContainer";
+import { Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
   const [user, setUser] = useState<null>(null);
   const [todo, setTodo] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<[]>([]);
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -21,15 +21,15 @@ const App: React.FC = () => {
     });
   }, []);
 
-
   useEffect(() => {
-    fetch("/tasks")
+    fetch("http://localhost:3000/tasks")
       .then((r) => r.json())
       .then((todo) => {
-        console.log(todo)
         setTodos(todo);
       });
   }, []);
+
+  console.log(todo);
 
   function handleLogout() {
     setUser(null);
@@ -44,15 +44,27 @@ const App: React.FC = () => {
     }
   };
 
-
-  if (!user) return <Login onLogin={setUser} />;
+  if (!user) return <LandingPage onLogin={setUser} />;
 
   return (
     <div className="App">
       <span className="heading">Taskify</span>
       <Header user={user} setUser={setUser} onLogout={handleLogout} />
-      <NewTask todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
-      <TodoList todos={todos} setTodos={setTodos} />
+
+      <Routes>
+        <Route
+          path="*"
+          element={
+            <MainContainer
+              todo={todo}
+              setTodo={setTodo}
+              handleAdd={handleAdd}
+              todos={todos}
+              setTodos={setTodos}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 };
