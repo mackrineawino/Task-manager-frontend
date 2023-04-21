@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from "react-router-dom";
 import { Todo } from "../Model/Todo";
 import InputField from "./InputField";
 import TodoList from "./TodoList";
@@ -23,9 +23,7 @@ const MainContainer: React.FC<Props> = ({
       <Routes>
         <Route
           path="/field"
-          element={
-            <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
-          }
+          element={<InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />}
         />
         <Route
           path="/tasks"

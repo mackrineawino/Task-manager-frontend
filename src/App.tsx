@@ -8,6 +8,7 @@ import LandingPage from "./Components/LandingPage";
 import MainContainer from "./Components/MainContainer";
 import { Route, Routes } from "react-router-dom";
 import { Todo } from "./Model/Todo";
+import InputField from "./Components/InputField";
 
 const App: React.FC = () => {
 
@@ -53,6 +54,7 @@ const App: React.FC = () => {
     <div className="App">
       <span className="heading">Taskify</span>
       <Header user={user} setUser={setUser} onLogout={handleLogout} />
+      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
 
       <Routes>
         <Route
