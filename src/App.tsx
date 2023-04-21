@@ -6,8 +6,9 @@ import "./App.css";
 import Header from "./Components/Header";
 import LandingPage from "./Components/LandingPage";
 import MainContainer from "./Components/MainContainer";
-import { Route, Routes } from "react-router-dom";
+import {BrowserRouter, Route, Routes } from "react-router-dom";
 import { Todo } from "./Model/Todo";
+import TodoList from "./Components/TodoList";
 import InputField from "./Components/InputField";
 
 const App: React.FC = () => {
@@ -26,16 +27,19 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/tasks")
+    fetch("http://127.0.0.1:3000/tasks")
       .then((response) => response.json())
-      .then((res) => {
-        setTodos(res);
+      .then((todos) => {
+        console.log(todos);
+        setTodos(todos);
       });
   }, []);
 
-  console.log(todo);
 
-  function handleLogout() {
+
+  
+
+  const handleLogout = ():void => {
     setUser(null);
   }
 
@@ -43,7 +47,7 @@ const App: React.FC = () => {
     e.preventDefault();
 
     if (todo) {
-      setTodos([...todos, { id: Date.now(), name:todo, completed: false, user_id: Date.now(), }]);
+      setTodos([...todos, { id: todos.length +1 , name:todo, completed: false, user_id: Date.now(), }]);
       setTodo("");
     }
   };
@@ -54,22 +58,15 @@ const App: React.FC = () => {
     <div className="App">
       <span className="heading">Taskify</span>
       <Header user={user} setUser={setUser} onLogout={handleLogout} />
-      {/* <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} /> */}
-
+      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+    {/* <BrowserRouter> */}
       <Routes>
-        <Route
-          path="*"
-          element={
-            <MainContainer
-              todo={todo}
-              setTodo={setTodo}
-              handleAdd={handleAdd}
-              todos={todos}
-              setTodos={setTodos}
-            />
-          }
+      <Route
+          path="/tasks"
+          element={<TodoList todos={todos} setTodos={setTodos} />}
         />
       </Routes>
+    
     </div>
   );
 };

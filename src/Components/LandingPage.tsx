@@ -8,12 +8,12 @@ interface Props {
 }
 const LandingPage: React.FC<Props> = ({onLogin}) => {
 
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogin, setShowLogin] = useState<boolean>(true);
 
   return (
     <div className="login-form">
     <Wrapper>
-      <Logo>Go-Productive</Logo>
+      <Logo>Go Productive</Logo>
       <h2 className="tagline">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni optio cupiditate blanditiis necessitatibus harum odio vitae itaque repellendu
       </h2>

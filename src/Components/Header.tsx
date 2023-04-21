@@ -6,7 +6,7 @@ interface Props {
     password: string
   }
   setUser: React.Dispatch<React.SetStateAction<null>>
-  onLogout: React.Dispatch<React.SetStateAction<null>>
+  onLogout: () => void
 }
 
 const Header: React.FC<Props> = ({user, setUser, onLogout}) => {
