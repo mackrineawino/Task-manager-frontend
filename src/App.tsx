@@ -54,7 +54,7 @@ const App: React.FC = () => {
     <div className="App">
       <span className="heading">Taskify</span>
       <Header user={user} setUser={setUser} onLogout={handleLogout} />
-      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+      {/* <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} /> */}
 
       <Routes>
         <Route
