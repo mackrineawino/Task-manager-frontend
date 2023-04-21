@@ -1,11 +1,12 @@
 
 import React from "react";
-import { Todo } from "./Todo";
+import { Todo } from "../Model/Todo";
 import OneTodoCard from "./OneTodoCard";
 
 interface props {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  
 }
 
 const TodoList: React.FC<props> = ({ todos, setTodos }) => {

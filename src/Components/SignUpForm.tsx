@@ -8,19 +8,41 @@ const SignUpForm: React.FC<Props> = ({onLogin}) => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newUser = {name, email, password};
+    setIsLoading(true);
+    //const newUser = {name, email, password};
+
+    fetch("http://localhost:3000/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    }).then((r) => {
+      setIsLoading(false);
+      if (r.ok) {
+        r.json().then((user) => onLogin(user));
+      } else {
+        console.log("forbidden")
+      }
+    });
+  }
     
   
-    fetch("http://localhost:3000/users", {
-      method: 'POST',
-      headers: { "content-type":"application/json" },
-      body: JSON.stringify(newUser)
-    }).then(() => console.log(newUser));
+  //   fetch("http://localhost:3000/signup", {
+  //     method: 'POST',
+  //     headers: { "content-type":"application/json" },
+  //     body: JSON.stringify(newUser)
+  //   }).then(() => console.log(newUser));
   
-   }
+  //  }
 
   return (
     <div>
@@ -28,7 +50,7 @@ const SignUpForm: React.FC<Props> = ({onLogin}) => {
 
       <form onSubmit={handleSubmit}>
 
-        <label htmlFor="name">Username</label>
+        <label htmlFor="name">Name</label>
         <br />
         <input type="text" id="name" value ={name} onChange={(event) => setName(event.target.value)} />
         <br />
@@ -39,7 +61,7 @@ const SignUpForm: React.FC<Props> = ({onLogin}) => {
         <br />
         <label htmlFor="password">Password</label>
         <br />
-        <input type="text" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+        <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
         <br />
         <br />
         <button type="submit">Signup</button>

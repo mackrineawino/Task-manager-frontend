@@ -1,16 +1,39 @@
-import React from 'react'
+import React from "react";
+import { Route, Routes } from 'react-router-dom'
+import { Todo } from "../Model/Todo";
+import InputField from "./InputField";
+import TodoList from "./TodoList";
 
-interface Props{
+interface Props {
   todo: string;
   setTodo: React.Dispatch<React.SetStateAction<string>>;
-  handleAdd: React.FC;
-  todos: [];
+  handleAdd: (e: React.FormEvent) => void;
+  todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
-const MainContainer: React.FC<Props> = ({todos, setTodos, handleAdd, setTodo, todo}) => {
+const MainContainer: React.FC<Props> = ({
+  todos,
+  setTodos,
+  handleAdd,
+  setTodo,
+  todo,
+}) => {
   return (
-    <div>MainContainer</div>
-  )
-}
+    <div>
+      <Routes>
+        <Route
+          path="/field"
+          element={
+            <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+          }
+        />
+        <Route
+          path="/tasks"
+          element={<TodoList todos={todos} setTodos={setTodos} />}
+        />
+      </Routes>
+    </div>
+  );
+};
 
-export default MainContainer
+export default MainContainer;

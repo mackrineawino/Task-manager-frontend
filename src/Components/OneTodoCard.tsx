@@ -85,7 +85,7 @@ import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
-import { Todo } from "./Todo";
+import { Todo } from "../Model/Todo";
 
 const OneTodoCard: React.FC<{
   todo: Todo;
@@ -93,7 +93,7 @@ const OneTodoCard: React.FC<{
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }> = ({ todo, todos, setTodos }) => {
   const [edit, setEdit] = useState<boolean>(false);
-  const [editTodo, setEditTodo] = useState<string>(todo.todo);
+  const [editTodo, setEditTodo] = useState<string>(todo.name);
 
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -115,7 +115,7 @@ const OneTodoCard: React.FC<{
   const handleDone = (id: number) => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
   };
@@ -129,16 +129,16 @@ const OneTodoCard: React.FC<{
           className="todos__single--text"
           ref={inputRef}
         />
-      ) : todo.isDone ? (
-        <s className="todos__single--text">{todo.todo}</s>
+      ) : todo.completed ? (
+        <s className="todos__single--text">{todo.name}</s>
       ) : (
-        <span className="todos__single--text">{todo.todo}</span>
+        <span className="todos__single--text">{todo.name}</span>
       )}
       <div>
         <span
           className="icon"
           onClick={() => {
-            if (!edit && !todo.isDone) {
+            if (!edit && !todo.completed) {
               setEdit(!edit);
             }
           }}

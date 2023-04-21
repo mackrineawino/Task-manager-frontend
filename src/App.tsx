@@ -7,11 +7,14 @@ import Header from "./Components/Header";
 import LandingPage from "./Components/LandingPage";
 import MainContainer from "./Components/MainContainer";
 import { Route, Routes } from "react-router-dom";
+import { Todo } from "./Model/Todo";
 
 const App: React.FC = () => {
+
+
   const [user, setUser] = useState<null>(null);
   const [todo, setTodo] = useState<string>("");
-  const [todos, setTodos] = useState<[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -23,9 +26,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetch("http://localhost:3000/tasks")
-      .then((r) => r.json())
-      .then((todo) => {
-        setTodos(todo);
+      .then((response) => response.json())
+      .then((res) => {
+        setTodos(res);
       });
   }, []);
 
@@ -39,7 +42,7 @@ const App: React.FC = () => {
     e.preventDefault();
 
     if (todo) {
-      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
+      setTodos([...todos, { id: Date.now(), name:todo, completed: false, user_id: Date.now(), }]);
       setTodo("");
     }
   };

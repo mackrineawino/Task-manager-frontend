@@ -9,40 +9,41 @@ interface Props {
 
 const LoginForm: React.FC<Props> = ({ onLogin }) => {
 
-    const [username, setUsername] = useState<string>("");
+    const [name, setName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [errors, setErrors] = useState<Error[]>([]);
+    //const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         setIsLoading(true);
-        fetch("/login", {
+        fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ name, password }),
         }).then((r) => {
             setIsLoading(false);
             if (r.ok) {
                 r.json().then((user) => onLogin(user));
             } else {
-                r.json().then((err) => setErrors(err.errors));
+                console.log(Error)
+                //r.json().then((err) => setErrors(err.errors));
             }
         });
     }
     return (
         <form onSubmit={handleSubmit}>
             <form>
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Name</label>
                 <input
                     type="text"
                     id="username"
                     autoComplete="off"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                 />
             </form>
             <form>
