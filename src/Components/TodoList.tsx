@@ -2,6 +2,7 @@
 import React from "react";
 import { Todo } from "../Model/Todo";
 import OneTodoCard from "./OneTodoCard";
+import "./styles.css"
 
 interface props {
   todos: Todo[];

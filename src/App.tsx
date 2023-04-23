@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+
 // import NewTask from "./Components/NewTask";
 // import TodoList from "./Components/TodoList";
 // import { Todo } from "./Components/Todo";
@@ -19,7 +20,7 @@ const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
-    fetch("/me").then((response) => {
+    fetch("http://127.0.0.1:3000/me").then((response) => {
       if (response.ok) {
         response.json().then((user) => setUser(user));
       }

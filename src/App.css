@@ -1,33 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&family=Sofia+Sans+Condensed:ital,wght@1,500&display=swap');
 
-.App{
-  width: 100vw;
-  height: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: tomato;
-  font-family: "Sofia Sans Condensed", cursive;
-}
+/* html body{
+  margin:0;
+  height:100%;
+  background-image: url("src/Styles/task2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 100px;
+  padding: 100px;
+  padding-bottom: 100px;
+} */
+
+/* .bg-container {
+  width:100%;
+  border:1px solid red;
+} */
 
 .heading {
   text-transform: uppercase;
-  font-size: 40px;
+  font-size: 50px;
+  margin: 30px 0;
+  color: blue;
+  z-index: 3;
+  text-align: right;
+}
+
+
+.login-form {
+  background-image: url("src/Styles/task2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 100px;
+  padding: 100px;
+  padding-bottom: 100px;
+}
+
+.tagline {
   color: white;
-  z-index: 1;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 200;
+}
+
+.accountquestion {
+  color: white;
   text-align: center;
 }
 
-@media (max-width: 800px) {
-  .heading{
-  margin: 15px 0;
-  font-size: 35px
-}
-}
 
-.todos{
-  display: flex;
-  justify-content: space-evenly;
-  width: 90%;
-  flex-wrap: wrap;
+
+
+
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .content {
+      width: 100%;
+  }
 }

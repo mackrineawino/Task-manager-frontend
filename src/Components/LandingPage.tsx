@@ -3,6 +3,8 @@ import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm'
 import styled from "styled-components";
 
+import "./LoginForm/loginform.css"
+
 interface Props {
  onLogin: React.Dispatch<React.SetStateAction<null>>
 }
@@ -15,21 +17,21 @@ const LandingPage: React.FC<Props> = ({onLogin}) => {
     <Wrapper>
       <Logo>Go Productive</Logo>
       <h2 className="tagline">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni optio cupiditate blanditiis necessitatibus harum odio vitae itaque repellendu
+      You can only manage time if you track it right.
       </h2>
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
           <Divider />
           <p className="accountquestion">Don't have an account?</p> &nbsp;
-          <button onClick={() => setShowLogin(false)}>Sign Up</button>
+          <button className='button' onClick={() => setShowLogin(false)}>Sign Up</button>
         </>
       ) : (
         <>
           <SignUpForm onLogin={onLogin} />
           <Divider />
           <p className="accountquestion">Already have an account?</p> &nbsp;
-          <button onClick={() => setShowLogin(true)}>Log In</button>
+          <button className='button' onClick={() => setShowLogin(true)}>Log In</button>
         </>
       )}
     </Wrapper>

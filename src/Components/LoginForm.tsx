@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
+import "./LoginForm/loginform.css"
 
 // import button from '../Styling/Button';
 
@@ -56,7 +57,7 @@ const LoginForm: React.FC<Props> = ({ onLogin }) => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </form>
-            <button color="primary" type="submit">
+            <button className='login-button' color="primary" type="submit">
                 {isLoading ? "Loading..." : "Login"}
             </button>
             {/* <form>

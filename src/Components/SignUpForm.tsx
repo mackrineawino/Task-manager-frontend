@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import "./LoginForm/loginform.css"
+
 interface Props{
     onLogin: React.Dispatch<React.SetStateAction<null>>;
 }
@@ -64,7 +66,7 @@ const SignUpForm: React.FC<Props> = ({onLogin}) => {
         <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
         <br />
         <br />
-        <button type="submit">Signup</button>
+        <button className='signup-button' type="submit">Signup</button>
       </form>
 
     </div>
